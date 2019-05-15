@@ -18,9 +18,12 @@ DEFAULT_RABBIT_URL = os.path.expandvars(os.environ.get('RABBIT_URL', 'amqp://loc
 EXCHANGE = 'ingest.bundle.exchange'
 EXCHANGE_TYPE = 'topic'
 ASSAY_QUEUE = 'ingest.bundle.assay.create'
+ASSAY_UPDATE_QUEUE = 'ingest.bundle.assay.update'
 ANALYSIS_QUEUE = 'ingest.bundle.analysis.create'
 
+
 ASSAY_ROUTING_KEY = 'ingest.bundle.assay.submitted'
+ASSAY_UPDATE_ROUTING_KEY = 'ingest.bundle.assay.updated'
 ANALYSIS_ROUTING_KEY = 'ingest.bundle.analysis.submitted'
 
 logger = logging.getLogger(__name__)
@@ -66,7 +69,8 @@ if __name__ == '__main__':
 
     bundle_exchange = Exchange(EXCHANGE, type=EXCHANGE_TYPE)
     bundle_queues = [Queue(ASSAY_QUEUE, bundle_exchange, routing_key=ASSAY_ROUTING_KEY),
-                     Queue(ANALYSIS_QUEUE, bundle_exchange, routing_key=ANALYSIS_ROUTING_KEY)]
+                     Queue(ANALYSIS_QUEUE, bundle_exchange, routing_key=ANALYSIS_ROUTING_KEY),
+                     Queue(ASSAY_UPDATE_QUEUE, bundle_exchange, routing_key=ASSAY_UPDATE_ROUTING_KEY)]
 
     with Connection(DEFAULT_RABBIT_URL, heartbeat=1200) as conn:
         worker = Worker(conn, bundle_queues)
