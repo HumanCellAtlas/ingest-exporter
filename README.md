@@ -3,6 +3,8 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/8c1ff877fe9c89810c14/maintainability)](https://codeclimate.com/github/HumanCellAtlas/ingest-exporter/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/8c1ff877fe9c89810c14/test_coverage)](https://codeclimate.com/github/HumanCellAtlas/ingest-exporter/test_coverage)
 
+_This repository was part of HCA DCP/1 and is not maintained anymore. DCP/2 development of this component continues in the forked repository at https://github.com/ebi-ait/ingest-exporter._
+
 # ingest-exporter
 
 Component that handles the generation and transmission of DSS bundles from submissions
